@@ -33,14 +33,14 @@ const blogController = {
 
             post.title = title || post.title;
             post.content = content || post.content;
-            post.tags = tags || post.tags;
             await post.save();
 
             res.status(200).json({ message: "Post updated", post });
         } catch (err) {
             res.status(500).json({ message: err.message });
         }
-    }, deletePost: async (req, res) => {
+    },
+    deletePost: async (req, res) => {
         try {
             const { id } = req.params;
             const user = req.user;

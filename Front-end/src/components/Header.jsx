@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import PostContext from "../context/PostContext";
 import SearchPosts from "./SearchPost";
 import Results from "./Results";
+import PostContext from "../context/PostContext";
 
 function Header() {
-  const { onClearPosts } = useContext(PostContext);
+  const { user } = useContext(PostContext);
   return (
     <header>
       <h1>
@@ -13,8 +13,8 @@ function Header() {
       <div>
         <Results />
         <SearchPosts />
-        <button onClick={onClearPosts}>Clear posts</button>
       </div>
+      <h1>{user ? user.username : "😀"}</h1>
     </header>
   );
 }

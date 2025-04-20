@@ -45,6 +45,7 @@ const userController = {
 
     Signin: async (req, res) => {
         const { email, password } = req.body;
+        console.log(req.body)
 
         if (!email || !password) {
             return res.status(400).json({ message: "Please fill all fields" });

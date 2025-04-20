@@ -1,15 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import PostContext from "../context/PostContext";
+import { createPost } from "../utils/post.utils";
 
 function FormAddPost() {
-  const { onAddPost } = useContext(PostContext);
   const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [content, setBody] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!body || !title) return;
-    onAddPost({ title, body });
+    if (!content || !title) return;
+    createPost({ title, content });
     setTitle("");
     setBody("");
   };
@@ -22,7 +22,7 @@ function FormAddPost() {
         placeholder="Post title"
       />
       <textarea
-        value={body}
+        value={content}
         onChange={(e) => setBody(e.target.value)}
         placeholder="Post body"
       />

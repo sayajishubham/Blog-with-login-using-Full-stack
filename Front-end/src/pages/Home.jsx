@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PostContext from "../context/PostContext";
 import { createRandomPost } from "../Services/post.service";
 import Header from "../components/Header";
 import Main from "../components/Main";
 import Archive from "../components/PostArchived";
 import Footer from "../components/Footer";
+import { getPost } from "../utils/post.utils";
 export default function Home() {
-  const [posts, setPosts] = useState(() =>
-    Array.from({ length: 30 }, () => createRandomPost())
-  );
+  const [posts, setPosts] = useState(getPost);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isFakeDark, setIsFakeDark] = useState(false);
 
   const searchedPosts =
     searchQuery.length > 0
@@ -29,10 +27,6 @@ export default function Home() {
     setPosts([]);
   }
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("fake-dark-mode");
-  }, [isFakeDark]);
-
   return (
     <PostContext.Provider
       value={{
@@ -44,14 +38,6 @@ export default function Home() {
       }}
     >
       <section>
-        <button
-          onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
-          className="btn-fake-dark-mode"
-        >
-          {isFakeDark ? "☀️" : "🌙"}
-        </button>
-
-        <Header />
         <Main />
         <Footer />
       </section>
