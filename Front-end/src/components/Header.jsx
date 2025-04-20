@@ -12,7 +12,6 @@ function Header() {
       </h1>
       <div>
         <Results />
-        <SearchPosts />
       </div>
       <h1>{user ? user.username : "😀"}</h1>
     </header>
